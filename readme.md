@@ -19,5 +19,7 @@
     - [Proxy server](./s6/cycle%202/TCP/proxyserver/)
     - [Simple TCP](./s6/cycle%202/TCP/simple_tcp/)
   - [UDP](./s6/cycle%202/UDP/)
+    - [Simple Udp](./s6/cycle%202/UDP/simple_udp/)
+    - [Time server](./s6/cycle%202/UDP/timeserver/)
   - [FTP](./s6/cycle%202/FTP/)
   - [SMTP](./s6/cycle%202/SMTP/)
