@@ -26,29 +26,4 @@ The basic idea is to make a server and a client. The client can connect to the s
 
 4.  **Listen :**
 
-<details>
-<summary> Connect </summary>
-edit later
-</details>
-
-<details>
-<summary> Accept </summary>
-edit later
-</details>
-
-<details>
-<summary> Send </summary>
-edit later
-</details>
-
-<details>
-<summary> Recv </summary>
-edit later
-</details>
-
-<details>
-<summary> Bind </summary>
-edit later
-</details>
-
 ## Creation of a server
