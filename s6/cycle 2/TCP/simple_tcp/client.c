@@ -1,3 +1,7 @@
+/*
+    TCP client program
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -6,7 +10,7 @@
 void main()
 {
     char *ip = "127.0.0.1";
-    int port = 434525;
+    int port = 434525; // should be same as server port
     int sock;
     struct sockaddr_in addr;
     socklen_t addr_size;
@@ -19,10 +23,12 @@ void main()
         exit(1);
     }
     printf("[+] TCP server socket created .\n");
-    memset(&addr, '\0', sizeof(addr));
+
+    memset(&addr, '\0', sizeof(addr)); // clear the addr
     addr.sin_family = AF_INET;
     addr.sin_port = port;
     addr.sin_addr.s_addr = inet_addr(ip);
+
     connect(sock, (struct sockaddr *)&addr, sizeof(addr));
     printf(" Connected to the server .\n");
     bzero(buffer, 1024);

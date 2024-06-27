@@ -16,6 +16,7 @@ void main()
     socklen_t addr_size;
     char buffer[1024];
     int bind_val;
+
     server_sock = socket(AF_INET, SOCK_STREAM, 0);
     if (server_sock < 0)
     {

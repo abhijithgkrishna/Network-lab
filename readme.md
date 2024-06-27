@@ -15,6 +15,7 @@
 - [**Cycle 2**](./s6/cycle%202)
 
   - [TCP](./s6/cycle%202/TCP/)
+    - [Do check this one](./s6/cycle%202/TCP/how_tcp_works.md)
     - [Chat server](./s6/cycle%202/TCP/chat_server/)
     - [Proxy server](./s6/cycle%202/TCP/proxyserver/)
     - [Simple TCP](./s6/cycle%202/TCP/simple_tcp/)
