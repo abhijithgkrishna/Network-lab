@@ -93,4 +93,34 @@ Well, the server is ready to listen for incoming connections. But how does it kn
 
 The server is now up and running, waiting for incoming connections.
 
+---
+
 ## Creation of a client
+
+The client is a bit simpler than the server. The client just has to connect to the server and exchange messages.
+
+The first step is to create a socket. The client socket is created in the same way as the server socket. We are using the same options as we used for the server socket.
+
+`client_sock = socket(AF_INET, SOCK_STREAM, 0);` [View code](./simple_tcp/client.c#L19)
+
+### Creation of an address structure
+
+Now, you could wonder why we require an address structure since there is need to bind the client to an address. <br>
+This address structure variable is not for holding the address of the client, instead it is to hold the address of the server which we wish to connect. <br>
+Creation of this variable for the client is similar to that of the server. <br>
+
+1. Initialise the variable
+2. Clear the initial junk values using `memset()`
+3. Change the 3 parameters as we did before. [View Code](./simple_tcp/client.c#L27)
+
+```
+struct sockaddr_in addr;
+memset(&addr, '\0', sizeof(addr)); // clear the addr
+addr.sin_family = AF_INET;
+addr.sin_port = port;
+addr.sin_addr.s_addr = inet_addr(ip);
+```
+
+**Yay! We have our server listening for connections and a client ready to connect to the server**
+
+<!-- ## Connecting the client and exchanging messages -->
