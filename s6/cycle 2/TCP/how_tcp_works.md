@@ -54,15 +54,43 @@ So we got a socket whose `domain` is `AF_INET` (AF is address family and INET is
 
 Now What? <br>
 This socket should be accessible from other sockets, right?<br>
-The way we connect to a socket is by providing its address. So in order to make this socket accessible for connection, we should assign an address to it.
+The way we connect to a socket is by providing its address. So in order to make this socket accessible for connection from clients, we should assign an address to it.
 
 ### Creating an address structure
 
-Thanks to `<arpa/inet.h>` we don't have to create any structure, instead we just have to use the predefined `struct sockaddr_in`. Create a variable of type `struct sockaddr_in` and edit 3 of its parameters (`sin_family`,`sin_port` and `sin_addr.s_addr`) and we are good to go!
+Thanks to `<arpa/inet.h>` we don't have to create any structure, instead we just have to use the predefined `struct sockaddr_in`. Create a variable of type `struct sockaddr_in`, clear its existing junk contents using `memset()` and edit 3 of its parameters (`sin_family`,`sin_port` and `sin_addr.s_addr`) and we are good to go! [View code](./simple_tcp/server.c#L28)
 
 ```
-struct sockaddr_in server_addr;
+struct sockaddr_in server_addr; // creating the variable
+memset(&server_addr, '\0', sizeof(server_addr)); // clear the server_addr
 server_addr.sin_family = AF_INET;
 server_addr.sin_port = port;
 server_addr.sin_addr.s_addr = inet_addr(ip);
 ```
+
+The socket is ready, the address structure is ready but there seems to be a slight problem.<br>
+They are not linked or _binded_ by any mechanism.
+
+### Bind
+
+`bind()` just assigns an address to a socket. Once an address is _"binded"_ to a socket, this socket can be accessed from other sockets using this address.
+
+> Address simply refers to the IP address and port number
+
+the `bind()` method takes in the file descriptor of the socket, a pointer to the address variable and the length of the address variable and binds them (you dont need to worry on what glue is used to bind them :p )
+
+`bind_val = bind(server_sock, (struct sockaddr *)&server_addr, sizeof(server_addr));` [View code](./simple_tcp/server.c#L33)
+
+It is a good practice to check the return value of `bind()` to see if it was successful or not (`0` is success, `-1` is error).
+
+Well, the server is ready to listen for incoming connections. But how does it know that it should listen for incoming connections?<br> That's where `listen()` comes into play.
+
+### Listen
+
+`listen()` is used to make the server listen for incoming connections. It takes in the file descriptor of the socket and the maximum length of the queue of pending connections.
+
+`listen(server_sock, 10);` [View code](./simple_tcp/server.c#L41)
+
+The server is now up and running, waiting for incoming connections.
+
+## Creation of a client
