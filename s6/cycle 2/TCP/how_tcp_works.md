@@ -2,11 +2,11 @@
 
 The basic idea is to make a server and a client. The client can connect to the server to exchange messages
 
-> ! Always add the required header files for the methods used
+> Always add the required header files for the methods used
 
 ## Some basic definitions
 
-1.  **Socket :** You can think of a socket as something (a structure), maybe a virtual connector which can be used to connect to another socket.<br> Imagine it like a plug that can fit into a matching outlet to establish a connection.
+1.  **Socket :** <a id="socket"></a> You can think of a socket as something (a structure), maybe a virtual connector which can be used to connect to another socket.<br> Imagine it like a plug that can fit into a matching outlet to establish a connection.
 
     In C, `socket()` can be used to create a socket. <br>
 
@@ -37,8 +37,25 @@ The basic idea is to make a server and a client. The client can connect to the s
 
     [Manual entry for listen](https://man7.org/linux/man-pages/man2/listen.2.html)
 
-5.
-
 ## Creation of a server
 
-Creating a socket is easy
+The first part of creating a server or a client is the creation of a socket.<br>
+Creating a [socket](#socket) in C is as easy as <br>
+`server_sock = socket(AF_INET, SOCK_STREAM, 0);` [view code](./simple_tcp/server.c#L20)
+
+If all went well, we would now have a file descriptor which is just an integer (>2), assigned to `server_sock`
+
+> File descriptor 0, 1, 2 are reserved <br>
+> 0 : standard input <br>
+> 1 : standard output <br>
+> 2 : standard error <br>
+
+So we got a socket whose `domain` is `AF_INET` (AF is address family and INET is the internet), `type` is `SOCK_STREAM` (which is used for TCP) and has the default `protocol` for this type (since `0` is given as the protocol argument).
+
+Now What? <br>
+This socket should be accessible from other sockets, right?<br>
+The way we connect to a socket is by providing its address. So in order to make this socket accessible for connection, we should assign an address to it.
+
+### Creating an address structure
+
+Thanks to `<arpa/inet.h>` we don't have to create any structure, instead we just have to use the predefined `struct sockaddr_in`. Create a variable of type `struct sockaddr_in` and edit 3 of its parameters (`sin_family`,`sin_port` and `sin_addr.s_addr`) and we are good to go!
