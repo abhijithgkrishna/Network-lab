@@ -11,7 +11,7 @@ void main()
 {
     char *ip = "127.0.0.1";
     int port = 434525; // should be same as server port
-    int sock;
+    int sock, connection_status;
     struct sockaddr_in addr;
     socklen_t addr_size;
     char buffer[1024];
@@ -29,8 +29,13 @@ void main()
     addr.sin_port = port;
     addr.sin_addr.s_addr = inet_addr(ip);
 
-    connect(sock, (struct sockaddr *)&addr, sizeof(addr));
-    printf(" Connected to the server .\n");
+    connection_status = connect(sock, (struct sockaddr *)&addr, sizeof(addr));
+    if (connection_status < 0)
+    {
+        perror("[-] Connection error ");
+        exit(1);
+    }
+    printf("[+] Connected to the server .\n");
     bzero(buffer, 1024);
     strcpy(buffer, " HELLO FROM THE CLIENT ");
     printf(" Client : %s\n", buffer);

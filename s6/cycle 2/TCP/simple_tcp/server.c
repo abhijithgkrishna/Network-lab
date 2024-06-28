@@ -41,11 +41,15 @@ void main()
     listen(server_sock, 10);
     printf(" Listening ...\n");
 
+    memset(&client_addr, '\0', sizeof(client_addr));
+    printf(" Client IP before connection : %s\n", inet_ntoa(client_addr.sin_addr));
+
     while (1)
     {
         addr_size = sizeof(client_addr);
         client_sock = accept(server_sock, (struct sockaddr *)&client_addr, &addr_size);
         printf("[+] Clientconnected .\n");
+        printf(" Client IP : %s\n", inet_ntoa(client_addr.sin_addr));
         bzero(buffer, 1024); // clear the buffer
         recv(client_sock, buffer, sizeof(buffer), 0);
         printf(" Client : %s\n", buffer);
