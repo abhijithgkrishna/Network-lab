@@ -59,3 +59,10 @@ The way we connect to a socket is by providing its address. So in order to make 
 ### Creating an address structure
 
 Thanks to `<arpa/inet.h>` we don't have to create any structure, instead we just have to use the predefined `struct sockaddr_in`. Create a variable of type `struct sockaddr_in` and edit 3 of its parameters (`sin_family`,`sin_port` and `sin_addr.s_addr`) and we are good to go!
+
+```
+struct sockaddr_in server_addr;
+server_addr.sin_family = AF_INET;
+server_addr.sin_port = port;
+server_addr.sin_addr.s_addr = inet_addr(ip);
+```
