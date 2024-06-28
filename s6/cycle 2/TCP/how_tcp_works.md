@@ -1,5 +1,7 @@
 # How TCP Works
 
+![TCP Working](./TCP.svg)
+
 The basic idea is to make a server and a client. The client can connect to the server to exchange messages
 
 > Always add the required header files for the methods used
