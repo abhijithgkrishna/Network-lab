@@ -95,6 +95,12 @@ Well, the server is ready to listen for incoming connections. But how does it kn
 
 The server is now up and running, waiting for incoming connections.
 
+### Connect
+
+`connect()` is used to connect to a listening socket. It takes in three arguments, the file descriptor of the socket, pointer to an address structure (of the server) and length of the address structure.
+
+`int connect(int sockfd, const struct sockaddr *addr, socklen_t addrlen);` [View Code](./simple_tcp/client.c#L32)
+
 ---
 
 ## Creation of a client
@@ -125,4 +131,8 @@ addr.sin_addr.s_addr = inet_addr(ip);
 
 **Yay! We have our server listening for connections and a client ready to connect to the server**
 
-<!-- ## Connecting the client and exchanging messages -->
+## Connecting the client and exchanging messages
+
+In order for the client to connect to a listening socket, we can make use of the `connect()` system call from the client side. It looks like this (check ce)
+
+`connection_status = connect(sock, (struct sockaddr *)&addr, sizeof(addr));` [View Code](./simple_tcp/client.c#L32)
