@@ -24,3 +24,15 @@
     - [Time server](./s6/cycle%202/UDP/timeserver/)
   - [FTP](./s6/cycle%202/FTP/)
   - [SMTP](./s6/cycle%202/SMTP/)
+
+- [**Cycle 3**](./s6/cycle%203/)
+
+  - [Simple Stop and Wait](./s6/cycle%203/1stopandwait/)
+  - [Stop and Wait ARQ](./s6/cycle%203/2stopandwaitarq/)
+  - [Go back N](s6/cycle%203/3gobackn/)
+  - [Selective ARQ](s6/cycle%203/4selectivearq/)
+
+- [**Cycle 4**](./s6/cycle%204/)
+
+  - [Distance Vector Routing](./s6/cycle%204/distvec.c)
+  - [Link State Routing](./s6/cycle%204/linkstate.c)
