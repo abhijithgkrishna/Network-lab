@@ -9,8 +9,6 @@
 #include <sys/types.h>
 #include <arpa/inet.h>
 
-int clientCount = 0;
-
 typedef struct client
 {
 	int index;
@@ -19,6 +17,7 @@ typedef struct client
 	int len;
 } client;
 
+int clientCount = 0;
 client Client[1024];
 pthread_t thread[1024];
 
@@ -55,15 +54,18 @@ void *clientCommunication(void *ClientDetail)
 void main()
 {
 	int serverSocket = socket(PF_INET, SOCK_STREAM, 0);
+
 	struct sockaddr_in serverAddr;
 	serverAddr.sin_family = AF_INET;
 	serverAddr.sin_port = htons(34343);
 	serverAddr.sin_addr.s_addr = htons(INADDR_ANY);
+
 	if (bind(serverSocket, (struct sockaddr *)&serverAddr, sizeof(serverAddr)) == -1)
 		exit(0);
 	if (listen(serverSocket, 1024) == -1)
 		exit(0);
 	printf(" Server started listenting on port 8080...........\n");
+
 	while (1)
 	{
 		Client[clientCount].sockID = accept(serverSocket, (struct sockaddr *)&Client[clientCount].clientAddr, &Client[clientCount].len);
