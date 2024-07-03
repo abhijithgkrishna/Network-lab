@@ -22,6 +22,7 @@
   - [UDP](./s6/cycle%202/UDP/)
     - [Simple Udp](./s6/cycle%202/UDP/simple_udp/)
     - [Time server](./s6/cycle%202/UDP/timeserver/)
+    - [Case conversion using UDP](./s6/cycle%202/UDP/case_conversion_udp/)
   - [FTP](./s6/cycle%202/FTP/)
   - [SMTP](./s6/cycle%202/SMTP/)
 
