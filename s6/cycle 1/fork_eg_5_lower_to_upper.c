@@ -6,7 +6,7 @@
 #include <unistd.h>
 #include <sys/wait.h>
 
-void convert_to_lower(char *str)
+void convert_to_upper(char *str)
 {
 	for (int i = 0; str[i] != '\0'; ++i)
 	{
@@ -17,7 +17,7 @@ void convert_to_lower(char *str)
 	}
 	printf("After converting to upper : %s \n", str);
 }
-void convert_to_upper(char *str)
+void convert_to_lower(char *str)
 {
 	for (int i = 0; str[i] != '\0'; ++i)
 	{

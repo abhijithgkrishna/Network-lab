@@ -84,27 +84,30 @@ void main()
             else
             {
                 printf("Client: Received acknowledgement for packet %s\n", buffer);
-                if(atoi(buffer)!=packets[windowStart]) {
-                  printf("Client: Wrong acknowledgement! Sending window packets again\n");
-                  sendWindowPackets(&sockfd, addr, packets, windowStart, windowEnd);
+                if (atoi(buffer) != packets[windowStart])
+                {
+                    printf("Client: Wrong acknowledgement! Sending window packets again\n");
+                    sendWindowPackets(&sockfd, addr, packets, windowStart, windowEnd);
                 }
-                else {
-                  windowStart++;
-                  if (windowEnd < packetCount)
-                      windowEnd++;
+                else
+                {
+                    windowStart++;
+                    if (windowEnd < packetCount)
+                        windowEnd++;
 
-                  if (windowStart != windowEnd)
-                  {
-                      bzero(buffer, 1024);
-                      if(flag==1) {
-                        sprintf(buffer, "%d", packets[windowEnd-1]);
-                        printf("Client: Sending packet %s\n", buffer);
-                        sendto(sockfd, buffer, 1024, 0, (struct sockaddr *)&addr, sizeof(addr));
-                      }
-                      if(windowEnd=packetCount)
-                        flag=0;
-                  }
-              }
+                    if (windowStart != windowEnd)
+                    {
+                        bzero(buffer, 1024);
+                        if (flag == 1)
+                        {
+                            sprintf(buffer, "%d", packets[windowEnd - 1]);
+                            printf("Client: Sending packet %s\n", buffer);
+                            sendto(sockfd, buffer, 1024, 0, (struct sockaddr *)&addr, sizeof(addr));
+                        }
+                        if (windowEnd = packetCount)
+                            flag = 0;
+                    }
+                }
             }
         }
 

@@ -30,6 +30,8 @@ void main()
     server_addr.sin_port = htons(server_port);
     server_addr.sin_addr.s_addr = inet_addr(server_ip);
 
+    addr_size = sizeof(server_addr);
+
     bzero(buffer, 1024);
     printf(" Enter the data : ");
     scanf(" %[^\n]", buffer);

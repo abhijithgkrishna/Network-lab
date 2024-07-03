@@ -36,6 +36,8 @@ void main()
     server_addr.sin_port = htons(port);
     server_addr.sin_addr.s_addr = inet_addr(ip);
 
+    addr_size = sizeof(server_addr);
+
     bind_val = bind(sockfd, (struct sockaddr *)&server_addr, sizeof(server_addr));
     if (bind_val < 0)
     {
@@ -50,5 +52,6 @@ void main()
     strcpy(buffer, "Data successfully received.");
     printf("(Server) Data to client: %s\n", buffer);
 
-    sendto(sockfd, buffer, 1024, 0, (struct sockaddr *)&client_addr, sizeof(client_addr));
+    int b = sendto(sockfd, buffer, 1024, 0, (struct sockaddr *)&client_addr, sizeof(client_addr));
+    printf("Number of bytes sent : %d \n", b);
 }

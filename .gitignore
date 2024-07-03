@@ -5,3 +5,7 @@ s6/cycle 2/TCP/chat_server/client
 s6/cycle 2/TCP/chat_server/server
 s6/cycle 3/1stopandwait/client
 s6/cycle 3/1stopandwait/server
+s6/cycle 2/UDP/case_conversion_udp/client
+s6/cycle 2/UDP/case_conversion_udp/server
+s6/cycle 2/UDP/simple_udp/client
+s6/cycle 2/UDP/simple_udp/server
