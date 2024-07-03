@@ -1,15 +1,19 @@
-# include <stdio.h>
-# include <stdlib.h>
-# include <string.h>
-# include <sys/types.h>
-# include <arpa/inet.h>
+/*
+    UDP client using C
+*/
 
-void main ()
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sys/types.h>
+#include <arpa/inet.h>
+
+void main()
 {
-    char *ip = "127.0.0.1";
-    int port = 5566;
+    char *server_ip = "127.0.0.1";
+    int server_port = 5566;
     int sockfd;
-    struct sockaddr_in addr;
+    struct sockaddr_in server_addr;
     char buffer[1024];
     socklen_t addr_size;
 
@@ -20,19 +24,20 @@ void main ()
         exit(1);
     }
 
-    memset(&addr, '\0', sizeof(addr));
-    addr.sin_family = AF_INET;
-    addr.sin_port = htons(port);
-    addr.sin_addr.s_addr = inet_addr(ip);
-    
+    // Creating the server address structure in order to connect to the server.
+    memset(&server_addr, '\0', sizeof(server_addr));
+    server_addr.sin_family = AF_INET;
+    server_addr.sin_port = htons(server_port);
+    server_addr.sin_addr.s_addr = inet_addr(server_ip);
+
     bzero(buffer, 1024);
     printf(" Enter the data : ");
     scanf(" %[^\n]", buffer);
     printf("( Client ) Data to server :%s\n", buffer);
-    sendto(sockfd, buffer, 1024, 0, (struct sockaddr *)&addr, sizeof(addr));
+    sendto(sockfd, buffer, 1024, 0, (struct sockaddr *)&server_addr, sizeof(server_addr));
 
     bzero(buffer, 1024);
-    addr_size = sizeof(addr);
-    recvfrom(sockfd, buffer, 1024, 0, (struct sockaddr *)&addr, &addr_size);
+
+    recvfrom(sockfd, buffer, 1024, 0, (struct sockaddr *)&server_addr, &addr_size);
     printf("( Client ) Data from server :%s\n", buffer);
 }
