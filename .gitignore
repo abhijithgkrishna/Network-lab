@@ -3,3 +3,5 @@
 /study
 s6/cycle 2/TCP/chat_server/client
 s6/cycle 2/TCP/chat_server/server
+s6/cycle 3/1stopandwait/client
+s6/cycle 3/1stopandwait/server
