@@ -22,7 +22,7 @@ void main()
         perror("[-] Socket error ");
         exit(1);
     }
-    printf("[+] TCP server socket created .\n");
+    printf("[+] TCP client socket created .\n");
 
     memset(&addr, '\0', sizeof(addr)); // clear the addr
     addr.sin_family = AF_INET;
