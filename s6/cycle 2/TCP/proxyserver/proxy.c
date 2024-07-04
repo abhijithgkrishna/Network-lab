@@ -1,12 +1,12 @@
-# include <stdio.h>
-# include <stdlib.h>
-# include <sys/types.h>
-# include <sys/socket.h>
-# include <arpa/inet.h>
-# include <string.h>
-# include <unistd.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <arpa/inet.h>
+#include <string.h>
+#include <unistd.h>
 
-void main ()
+void main()
 {
     char *server_ip = "127.0.0.1";
     int server_port = 34243;
@@ -41,7 +41,7 @@ void main ()
     int n = bind(proxy_sock, (struct sockaddr *)&proxy_addr, sizeof(proxy_addr));
     if (n < 0)
     {
-        perror("[ -] Bind error \n");
+        perror("[-] Bind error \n");
         exit(1);
     }
 
