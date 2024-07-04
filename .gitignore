@@ -9,3 +9,5 @@ s6/cycle 2/UDP/case_conversion_udp/client
 s6/cycle 2/UDP/case_conversion_udp/server
 s6/cycle 2/UDP/simple_udp/client
 s6/cycle 2/UDP/simple_udp/server
+s6/cycle 2/TCP/chatserver_wip/server
+s6/cycle 2/TCP/chatserver_wip/client
