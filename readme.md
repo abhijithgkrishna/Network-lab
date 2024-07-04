@@ -16,7 +16,7 @@
 
   - [TCP](./s6/cycle%202/TCP/)
     - [Do check this one](./s6/cycle%202/TCP/how_tcp_works.md)
-    - [Chat server](./s6/cycle%202/TCP/chat_server/)
+    - [Chat server](./s6/cycle%202/TCP/chat_server/) or [Chat server (wip)](./s6/cycle%202/TCP/chatserver_wip/)
     - [Proxy server](./s6/cycle%202/TCP/proxyserver/)
     - [Simple TCP](./s6/cycle%202/TCP/simple_tcp/)
   - [UDP](./s6/cycle%202/UDP/)
